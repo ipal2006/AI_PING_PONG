@@ -22,3 +22,13 @@ display: inline;
 }
 
 
+.copy_right_footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;    
+    background-color:whitesmoke;
+    font-size: 18px;
+    line-height: 3;
+    
+    }
