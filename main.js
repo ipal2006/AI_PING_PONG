@@ -20,12 +20,24 @@ var ball = {
     dx:3,
     dy:3
 }
+	
 
+	
+	
 function setup(){
   var canvas =  createCanvas(700,600);
+  canvas.parent('canvas');
   canvas.center()
+  video = createCapture(VIDEO);
+	video.size(700,600);
+  video.hide();
+  pose_net = ml5.poseNet(video,modelLoaded);
 }
 
+function modelLoaded()
+{
+  console.log("Model is Loaded");
+}
 
 function draw(){
 
