@@ -1,4 +1,5 @@
-
+var left_wrist_x = 0;
+var right_wrist_x = 0;
 /*created by prashant shukla */
 
 var paddle2 =10,paddle1=10;
@@ -32,11 +33,25 @@ function setup(){
 	video.size(700,600);
   video.hide();
   pose_net = ml5.poseNet(video,modelLoaded);
+  pose_net.on('pose',gotPoses);
+}
+
+function gotPoses(results)
+{
+	if(results.length>0)
+	{
+		
+		
+    console.log(results);
+    left_wrist_x=results[0].pose.leftWrist.x;
+    right_wrist_x=results[0].pose.rightWrist.x;
+    console.log("left wrist x is"+left_wrist_x);
+	}
 }
 
 function modelLoaded()
 {
-  console.log("Model is Loaded");
+  console.log ("Model is Loaded");
 }
 
 function draw(){
@@ -78,6 +93,12 @@ function draw(){
    
    //function move call which in very important
     move();
+    if(right_wrist_x>0.2){
+      cbackground('#15bcbf');
+      stroke('#c92cbf');
+      fill('#c92cbf');
+     circle(25,right_wrist_x);
+    }
 }
 
 
